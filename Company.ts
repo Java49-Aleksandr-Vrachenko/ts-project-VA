@@ -1,0 +1,33 @@
+import { Employee } from "./Employee";
+export class Company {
+    constructor (private _employees: Array<Employee>) {
+    }
+    addEmployee(employee: Employee): void {
+        this._employees.push(employee);
+    }
+    removeEmployee(id: number): boolean {
+        let removed = false;
+        this._employees.forEach((employee, index) => {
+            if(employee.id === id) {
+                this._employees.splice(index, 1);
+                removed = true;
+            }
+        });
+        return removed;
+    }
+    getEmployee(id: number): Employee | null {
+        const getEmployee = this._employees.forEach(e => e.id === id);
+        if(getEmployee == undefined) {
+            return null;
+        }
+        return getEmployee;
+    }
+    getEmployeeBySalary(from: number, to: number): Employee[] {
+        let employee = this._employees.filter(e => e.computeSalary() >= from && e.computeSalary() <= to);
+        employee.sort((a,b) => a.birthYear - b.birthYear);
+        return employee;
+    }
+    computeBudget(): number {
+        return this._employees.reduce((acc, employee) => acc + employee.computeSalary(), 0);
+    }
+}
