@@ -27,6 +27,7 @@ class WageEmployee extends Employee_1.Employee {
     set hours(hours) {
         if (hours < exports.MIN_HOURS || hours > exports.MAX_HOURS) {
             throw `wrong hours value must be in range [${exports.MIN_HOURS}-${exports.MAX_HOURS}]`;
+            this._hours = hours;
         }
     }
     computeSalary() {

@@ -15,13 +15,15 @@ export class SalesPerson extends WageEmployee {
         set salesValue(salesValue: number) {
             if(this.salesValue < MIN_PERCENT_VALUE || this.salesValue > MAX_PERCENT_VALUE)
                 throw `Sales value ERROR`;
+                this._salesValue = salesValue;
         }
         set percentValue(percentValue: number) {
             if(this.percentValue < MIN_PERCENT_VALUE || this.percentValue > MAX_PERCENT_VALUE)
                 throw `ERROR percent value`;
+                this._percentValue = percentValue;
         }
         computeSalary(): number {
-            return this.basicSalary + this._salesValue * (this._percentValue/100) + this.hours * this.wage;
+            return super.computeSalary() + this._salesValue * (this._percentValue/100);
         }
 }
 

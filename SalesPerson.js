@@ -19,13 +19,15 @@ class SalesPerson extends WageEmployee_1.WageEmployee {
     set salesValue(salesValue) {
         if (this.salesValue < MIN_PERCENT_VALUE || this.salesValue > MAX_PERCENT_VALUE)
             throw `Sales value ERROR`;
+        this._salesValue = salesValue;
     }
     set percentValue(percentValue) {
         if (this.percentValue < MIN_PERCENT_VALUE || this.percentValue > MAX_PERCENT_VALUE)
             throw `ERROR percent value`;
+        this._percentValue = percentValue;
     }
     computeSalary() {
-        return this.basicSalary + this._salesValue * (this._percentValue / 100) + this.hours * this.wage;
+        return super.computeSalary() + this._salesValue * (this._percentValue / 100);
     }
 }
 exports.SalesPerson = SalesPerson;
